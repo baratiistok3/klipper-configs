@@ -1,0 +1,156 @@
+
+[stepper_a]
+step_pin: P2.2
+dir_pin: P2.6
+enable_pin: !P2.1
+step_distance: .0125
+endstop_pin: P1.28
+homing_speed: 60
+position_endstop: 302.2
+arm_length: 269.0
+
+[stepper_b]
+step_pin: P0.19
+dir_pin: P0.20
+enable_pin: !P2.8
+step_distance: .0125
+endstop_pin: P1.26
+
+[stepper_c]
+step_pin: P0.22
+dir_pin: P2.11
+enable_pin: !P0.21
+step_distance: .0125
+endstop_pin: P1.24
+
+[extruder]
+step_pin: P2.13
+dir_pin: !P0.11
+enable_pin: !P2.12
+step_distance: .0023923
+nozzle_diameter: 0.300
+filament_diameter: 1.750
+heater_pin: P2.7
+sensor_type: EPCOS 100K B57560G104F
+sensor_pin: P0.24
+min_extrude_temp: 150
+min_temp: 0
+max_temp: 275
+#control: pid
+#pid_Kp: 22.2
+#pid_Ki: 1.08
+#pid_Kd: 114
+
+[heater_bed]
+heater_pin: P2.5
+sensor_type: EPCOS 100K B57560G104F
+sensor_pin: P0.23
+min_temp: 0
+max_temp: 130
+control: pid
+pid_kp: 73.517
+pid_ki: 1.132
+pid_kd: 1193.728
+
+[fan]
+pin: P2.3
+
+[mcu]
+serial: /dev/serial/by-id/usb-Klipper_lpc1768_1070FF13261136AF3EF05F5BC32000F5-if00
+
+[printer]
+kinematics: delta
+max_velocity: 500
+max_accel: 3000
+max_z_velocity: 200
+delta_radius: 134.4
+# if you want to DELTA_CALIBRATE you may need that
+minimum_z_position: -5
+
+# if you want to use your probe for DELTA_CALIBRATE you will need that
+[probe]
+pin: P1.25
+z_offset: 15.9
+samples: 3
+
+[idle_timeout]
+timeout: 360
+
+[delta_calibrate]
+radius: 115
+horizontal_move_z = 25 
+
+[board_pins]
+aliases:
+    # EXP1 header
+    EXP1_1=P1.30, EXP1_3=P1.18, EXP1_5=P1.20, EXP1_7=P1.22, EXP1_9=<GND>,
+    EXP1_2=P0.28, EXP1_4=P1.19, EXP1_6=P1.21, EXP1_8=P1.23, EXP1_10=<5V>,
+    # EXP2 header
+    EXP2_1=P0.17, EXP2_3=P3.26, EXP2_5=P3.25, EXP2_7=P1.31, EXP2_9=<GND>,
+    EXP2_2=P0.15, EXP2_4=P0.16, EXP2_6=P0.18, EXP2_8=<RST>, EXP2_10=<NC>
+    # Pins EXP2_1, EXP2_6, EXP2_2 are also MISO, MOSI, SCK of bus "ssp0"
+	
+	
+
+######################################################################
+# "RepRapDiscount 2004 Smart Controller" type displays
+######################################################################
+
+[display]
+lcd_type: hd44780
+rs_pin: EXP1_4
+e_pin: EXP1_3
+d4_pin: EXP1_5
+d5_pin: EXP1_6
+d6_pin: EXP1_7
+d7_pin: EXP1_8
+encoder_pins: ^EXP2_3, ^EXP2_5
+click_pin: ^!EXP1_2
+
+[output_pin beeper]
+pin: EXP1_1
+
+
+
+[tmc2130 stepper_a]
+cs_pin: P1.17
+spi_software_miso_pin: P0.5
+spi_software_mosi_pin: P4.28
+spi_software_sclk_pin: P0.4
+diag1_pin: P1.29
+microsteps: 16
+run_current: 0.800
+hold_current: 0.500
+stealthchop_threshold: 250
+
+[tmc2130 stepper_b]
+cs_pin: P1.15
+spi_software_miso_pin: P0.5
+spi_software_mosi_pin: P4.28
+spi_software_sclk_pin: P0.4
+diag1_pin: P1.27
+microsteps: 16
+run_current: 0.800
+hold_current: 0.500
+stealthchop_threshold: 250
+
+[tmc2130 stepper_c]
+cs_pin: P1.10
+spi_software_miso_pin: P0.5
+spi_software_mosi_pin: P4.28
+spi_software_sclk_pin: P0.4
+diag1_pin: P1.25
+microsteps: 16
+run_current: 0.800
+hold_current: 0.500
+stealthchop_threshold: 250
+
+#*# <---------------------- SAVE_CONFIG ---------------------->
+#*# DO NOT EDIT THIS BLOCK OR BELOW. The contents are auto-generated.
+#*#
+#*# [extruder]
+#*# control = pid
+#*# pid_kp = 18.202
+#*# pid_ki = 0.809
+#*# pid_kd = 102.385
+
