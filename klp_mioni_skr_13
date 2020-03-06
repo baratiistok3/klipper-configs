@@ -1,0 +1,160 @@
+[stepper_a]
+step_pin: P2.2
+dir_pin: !P2.6
+enable_pin: !P2.1
+step_distance: .0125
+endstop_pin: P1.28
+homing_speed: 60
+#position_endstop: 300.2
+#arm_length: 269.0
+
+[stepper_b]
+step_pin: P0.19
+dir_pin: !P0.20
+enable_pin: !P2.8
+step_distance: .0125
+endstop_pin: P1.26
+
+[stepper_c]
+step_pin: P0.22
+dir_pin: !P2.11
+enable_pin: !P0.21
+step_distance: .0125
+endstop_pin: P1.24
+
+
+[extruder]
+step_pin: P2.13
+dir_pin: !P0.11
+enable_pin: !P2.12
+step_distance: .00239
+nozzle_diameter: 0.400
+filament_diameter: 1.7500
+heater_pin: P2.7
+sensor_type: EPCOS 100K B57560G104F
+sensor_pin: P0.24
+#control: pid
+#pid_Kp: 22.2
+#pid_Ki: 1.08
+#pid_Kd: 114
+min_temp: 0
+max_temp: 250
+
+
+[heater_bed]
+heater_pin: P2.5
+sensor_type: ATC Semitec 104GT-2
+sensor_pin: P0.23
+control: watermark
+min_temp: 0
+max_temp: 130
+
+
+[fan]
+pin: P2.3
+
+
+[mcu]
+serial: /dev/serial/by-id/usb-Klipper_lpc1768_0D30010206083DAFF866715CC42000F5-if00 
+
+
+[heater_fan my_nozzle_fan]
+pin: P2.4
+heater: extruder
+heater_temp: 50.0
+fan_speed: 1.0
+
+[printer]
+kinematics: delta
+max_velocity: 400
+max_accel: 1000
+max_z_velocity: 200
+#delta_radius: 134.4
+# if you want to DELTA_CALIBRATE you may need that
+minimum_z_position: -5
+
+[delta_calibrate]
+radius: 115
+horizontal_move_z = 25 
+
+########################################
+# EXP1 / EXP2 (display) pins
+########################################
+
+[board_pins]
+aliases:
+    # EXP1 header
+    EXP1_1=P1.30, EXP1_3=P1.18, EXP1_5=P1.20, EXP1_7=P1.22, EXP1_9=<GND>,
+    EXP1_2=P0.28, EXP1_4=P1.19, EXP1_6=P1.21, EXP1_8=P1.23, EXP1_10=<5V>,
+    # EXP2 header
+    EXP2_1=P0.17, EXP2_3=P3.26, EXP2_5=P3.25, EXP2_7=P1.31, EXP2_9=<GND>,
+    EXP2_2=P0.15, EXP2_4=P0.16, EXP2_6=P0.18, EXP2_8=<RST>, EXP2_10=<NC>
+    # Pins EXP2_1, EXP2_6, EXP2_2 are also MISO, MOSI, SCK of bus "ssp0"
+
+	
+	
+	######################################################################
+# "RepRapDiscount 2004 Smart Controller" type displays
+######################################################################
+
+[display]
+lcd_type: hd44780
+rs_pin: EXP1_4
+e_pin: EXP1_3
+d4_pin: EXP1_5
+d5_pin: EXP1_6
+d6_pin: EXP1_7
+d7_pin: EXP1_8
+encoder_pins: ^EXP2_3, ^EXP2_5
+click_pin: ^!EXP1_2
+
+[output_pin beeper]
+pin: EXP1_1
+
+[homing_override]
+gcode:
+  G28
+#  SET_GCODE_OFFSET Z=0.2
+
+#*# <---------------------- SAVE_CONFIG ---------------------->
+#*# DO NOT EDIT THIS BLOCK OR BELOW. The contents are auto-generated.
+#*#
+#*# [extruder]
+#*# control = pid
+#*# pid_kp = 27.648
+#*# pid_ki = 1.723
+#*# pid_kd = 110.937
+#*#
+#*# [printer]
+#*# delta_radius = 133.540403
+#*#
+#*# [stepper_a]
+#*# angle = 211.160102
+#*# arm_length = 269.000000
+#*# position_endstop = 300.903741
+#*#
+#*# [stepper_b]
+#*# angle = 331.560608
+#*# arm_length = 269.000000
+#*# position_endstop = 301.461981
+#*#
+#*# [stepper_c]
+#*# angle = 90.000000
+#*# arm_length = 269.000000
+#*# position_endstop = 300.979231
+#*#
+#*# [delta_calibrate]
+#*# height0 = 0.0
+#*# height0_pos = 24055.000,24119.000,24093.000
+#*# height1 = 0.0
+#*# height1_pos = 29465.000,29229.000,21328.000
+#*# height2 = 0.0
+#*# height2_pos = 23614.000,32644.000,23573.000
+#*# height3 = 0.0
+#*# height3_pos = 21419.000,28679.000,28502.000
+#*# height4 = 0.0
+#*# height4_pos = 23283.000,23500.000,29755.000
+#*# height5 = 0.0
+#*# height5_pos = 27569.000,21612.000,27690.000
+#*# height6 = 0.0
+#*# height6_pos = 31017.000,23368.000,23447.000
